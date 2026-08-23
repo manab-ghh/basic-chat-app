@@ -1,0 +1,108 @@
+# ==============================================================================
+# Git Attributes & GitHub Linguist Configuration
+# Project: ChatApp (Flutter + Dart & Node.js + Express.js)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Global Line Ending Normalization
+# ------------------------------------------------------------------------------
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# ------------------------------------------------------------------------------
+# 2. Binary Files Preservation
+# ------------------------------------------------------------------------------
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.jar binary
+*.so binary
+*.dylib binary
+*.dll binary
+
+# ------------------------------------------------------------------------------
+# 3. Explicit Language Definitions for GitHub Linguist
+# ------------------------------------------------------------------------------
+*.dart linguist-language=Dart
+*.js linguist-language=JavaScript
+*.mjs linguist-language=JavaScript
+*.cjs linguist-language=JavaScript
+*.json linguist-language=JSON
+*.yaml linguist-language=YAML
+*.yml linguist-language=YAML
+*.html linguist-language=HTML
+*.xml linguist-language=XML
+*.sh linguist-language=Shell
+
+# ------------------------------------------------------------------------------
+# 4. Dependency Lockfiles (Marked as Generated)
+# ------------------------------------------------------------------------------
+package-lock.json linguist-generated=true
+backend/package-lock.json linguist-generated=true
+pubspec.lock linguist-generated=true
+frontend/pubspec.lock linguist-generated=true
+Podfile.lock linguist-generated=true
+frontend/ios/Podfile.lock linguist-generated=true
+Package.resolved linguist-generated=true
+frontend/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved linguist-generated=true
+frontend/ios/Runner.xcworkspace/xcshareddata/swiftpm/Package.resolved linguist-generated=true
+
+# ------------------------------------------------------------------------------
+# 5. Build, Cache & Temporary Output Directories (Marked as Generated)
+# ------------------------------------------------------------------------------
+build/ linguist-generated=true
+**/build/** linguist-generated=true
+frontend/build/** linguist-generated=true
+frontend/android/build/** linguist-generated=true
+
+.dart_tool/ linguist-generated=true
+**/.dart_tool/** linguist-generated=true
+frontend/.dart_tool/** linguist-generated=true
+
+node_modules/ linguist-generated=true
+**/node_modules/** linguist-generated=true
+backend/node_modules/** linguist-generated=true
+
+coverage/ linguist-generated=true
+**/coverage/** linguist-generated=true
+*.lcov linguist-generated=true
+
+# ------------------------------------------------------------------------------
+# 6. Flutter Generated Plugin Files & Tooling Metadata
+# ------------------------------------------------------------------------------
+.flutter-plugins linguist-generated=true
+frontend/.flutter-plugins linguist-generated=true
+.flutter-plugins-dependencies linguist-generated=true
+frontend/.flutter-plugins-dependencies linguist-generated=true
+.metadata linguist-generated=true
+frontend/.metadata linguist-generated=true
+
+**/GeneratedPluginRegistrant.* linguist-generated=true
+**/generated_plugin_registrant.* linguist-generated=true
+**/generated_plugins.cmake linguist-generated=true
+frontend/linux/flutter/generated_plugins.cmake linguist-generated=true
+frontend/windows/flutter/generated_plugins.cmake linguist-generated=true
+
+# ------------------------------------------------------------------------------
+# 7. Native Platform Scaffolding & Wrapper Scripts (Excluded from Stats)
+# ------------------------------------------------------------------------------
+frontend/android/gradlew linguist-generated=true
+frontend/android/gradlew.bat linguist-generated=true
+frontend/android/gradle/wrapper/** linguist-generated=true
+frontend/android/build/reports/** linguist-generated=true
+
+frontend/ios/Pods/** linguist-generated=true
+frontend/ios/Flutter/ephemeral/** linguist-generated=true
+frontend/macos/Flutter/ephemeral/** linguist-generated=true
+frontend/linux/flutter/ephemeral/** linguist-generated=true
+frontend/windows/flutter/ephemeral/** linguist-generated=true
+
+frontend/ios/Runner.xcodeproj/** linguist-generated=true
+frontend/ios/Runner.xcworkspace/** linguist-generated=true
+frontend/macos/Runner.xcodeproj/** linguist-generated=true
+frontend/macos/Runner.xcworkspace/** linguist-generated=true
+frontend/windows/runner/resources/** linguist-generated=true
