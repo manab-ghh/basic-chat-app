@@ -8,8 +8,6 @@ import 'chat_provider.dart';
 
 final socketServiceProvider = Provider<SocketService>((ref) => SocketService());
 
-/// Tracks online/offline state for users globally, so the Home screen's
-/// chat list and any open Chat screen both reflect presence consistently.
 final onlineUsersProvider =
     StateNotifierProvider<OnlineUsersNotifier, Set<String>>((ref) {
       return OnlineUsersNotifier();

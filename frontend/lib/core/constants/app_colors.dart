@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// Centralized color palette. Keeping colors here (instead of scattering
-/// hex codes across widgets) makes theming and future dark-mode tuning trivial.
 class AppColors {
   AppColors._();
 
-  static const Color primary = Color(0xFF075E54); // WhatsApp-style deep teal
+  static const Color primary = Color(0xFF075E54);
   static const Color primaryLight = Color(0xFF25D366);
   static const Color accent = Color(0xFF128C7E);
 

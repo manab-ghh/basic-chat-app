@@ -44,8 +44,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
     _tryAutoLogin();
   }
 
-  /// Called once on app start. If a token exists, validate it against
-  /// the backend via GET /me. If valid, restore session; if not, log out.
   Future<void> _tryAutoLogin() async {
     final token = await _storageService.getToken();
     if (token == null) {
@@ -57,7 +55,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
       final user = await _authService.getCurrentUser();
       state = AuthState.authenticated(user);
     } catch (_) {
-      // Token invalid/expired — clear it and force login
       await _storageService.deleteToken();
       state = const AuthState.unauthenticated();
     }
@@ -98,14 +95,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
   Future<void> logout() async {
     try {
       await _authService.logout();
-    } catch (_) {
-      // Ignore server-side failure; proceed with local logout regardless
-    }
+    } catch (_) {}
     await _storageService.deleteToken();
     state = const AuthState.unauthenticated();
   }
 
-  /// Called by ApiClient.onUnauthorized when a 401 is received on any request.
   void forceLogout() {
     state = const AuthState.unauthenticated(
       error: 'Session expired, please log in again',
@@ -131,7 +125,6 @@ final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
     ref.read(storageServiceProvider),
   );
 
-  // Wire the API client's 401 callback to force-logout the auth state.
   ref.read(apiClientProvider).onUnauthorized = notifier.forceLogout;
 
   return notifier;

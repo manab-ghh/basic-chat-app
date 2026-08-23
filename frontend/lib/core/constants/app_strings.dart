@@ -1,5 +1,3 @@
-/// App-wide string constants. Centralizing these avoids typos across
-/// screens and makes future localization (i18n) straightforward.
 class AppStrings {
   AppStrings._();
 

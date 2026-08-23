@@ -76,8 +76,6 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
       socketService.emitTyping(widget.chatId, widget.otherUser.id);
     }
 
-    // Debounce stop_typing: reset the timer on every keystroke, only fire
-    // stop_typing after the user pauses for 1.5s.
     _typingStopTimer?.cancel();
     _typingStopTimer = Timer(const Duration(milliseconds: 1500), () {
       if (_isCurrentlyTyping) {

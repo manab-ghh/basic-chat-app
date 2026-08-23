@@ -83,8 +83,6 @@ class ChatMessagesNotifier extends StateNotifier<ChatMessagesState> {
       if (message.chatId != chatId) return;
       receiveMessage(message);
 
-      // If this message was sent TO us and we're actively viewing this chat,
-      // immediately tell the server we've read it.
       if (message.receiverId == currentUserId) {
         _socketService.markRead(chatId);
       }
@@ -103,7 +101,6 @@ class ChatMessagesNotifier extends StateNotifier<ChatMessagesState> {
       final targetChatId = payload['chatId']?.toString();
       final readBy = (payload['readBy'] ?? payload['userId'])?.toString();
       if (targetChatId != chatId) return;
-      // The other participant read our messages — mark all of ours as read
       if (readBy != null && readBy != currentUserId) {
         _markOwnMessagesAsRead();
       }
@@ -184,8 +181,6 @@ class ChatMessagesNotifier extends StateNotifier<ChatMessagesState> {
     }
   }
 
-  /// Primary send path: emits over the socket with an ack callback.
-  /// Falls back to REST automatically if the socket isn't connected.
   Future<void> sendMessage({
     required String receiverId,
     required String text,

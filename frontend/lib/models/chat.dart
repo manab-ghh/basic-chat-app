@@ -43,8 +43,6 @@ class ChatModel extends Equatable {
     );
   }
 
-  /// Returns the "other" participant relative to the currently logged-in user —
-  /// used everywhere in the UI since chats are always displayed 1-to-1.
   UserModel otherParticipant(String currentUserId) {
     return participants.firstWhere(
       (p) => p.id != currentUserId,

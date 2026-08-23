@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
-/// Material 3 theme configuration shared across the app.
 class AppTheme {
   AppTheme._();
 

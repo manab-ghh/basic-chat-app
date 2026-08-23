@@ -43,12 +43,8 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// ✅ Remove duplicate index - only keep this
 userSchema.index({ email: 1 }, { unique: true });
 userSchema.index({ name: 'text', email: 'text' });
-// Remove this if you have it elsewhere:
-// userSchema.index({ email: 1 }); // ❌ Remove duplicate
-// userSchema.index({ name: 'text' }); // ✅ Keep text index
 
 userSchema.set('toJSON', {
   transform: (doc, ret) => {

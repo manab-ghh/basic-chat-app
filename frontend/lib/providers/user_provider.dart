@@ -36,10 +36,6 @@ final userSearchProvider =
       return UserSearchNotifier(ref.read(userServiceProvider));
     });
 
-/// Handles profile edits. Kept separate from AuthNotifier so profile-editing
-/// UI state (loading/error while saving) doesn't get tangled with login/session state —
-/// but on success it pushes the updated user back into AuthNotifier so the
-/// whole app (app bar, chat bubbles, etc.) reflects the change immediately.
 class ProfileEditNotifier extends StateNotifier<AsyncValue<void>> {
   final UserService _userService;
   final Ref _ref;

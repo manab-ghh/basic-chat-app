@@ -9,8 +9,6 @@ final chatServiceProvider = Provider<ChatService>((ref) {
   return ChatService(ref.read(apiClientProvider));
 });
 
-/// Holds the user's full chat list (Home screen) and keeps it live-updated
-/// as new messages arrive via socket events (wired in Step 12).
 class ChatListNotifier extends StateNotifier<AsyncValue<List<ChatModel>>> {
   final ChatService _chatService;
   ChatListNotifier(this._chatService) : super(const AsyncValue.data([]));
@@ -33,15 +31,12 @@ class ChatListNotifier extends StateNotifier<AsyncValue<List<ChatModel>>> {
     try {
       final chats = await _chatService.getChats();
       state = AsyncValue.data(chats);
-    } catch (_) {
-      // Silent fail on pull-to-refresh; keep showing existing data
-    }
+    } catch (_) {}
   }
 
   Future<ChatModel> openOrCreateChat(String otherUserId) async {
     final chat = await _chatService.createOrGetChat(otherUserId);
 
-    // Insert into local list immediately if it's a brand new chat
     state.whenData((chats) {
       final exists = chats.any((c) => c.id == chat.id);
       if (!exists) {
@@ -52,14 +47,10 @@ class ChatListNotifier extends StateNotifier<AsyncValue<List<ChatModel>>> {
     return chat;
   }
 
-  /// Called when a new message arrives via socket (Step 12) to bump that
-  /// chat to the top of the list and update its preview, WhatsApp-style.
   void updateChatWithMessage(String chatId, MessageModel message) {
     state.whenData((chats) {
       final index = chats.indexWhere((c) => c.id == chatId);
       if (index == -1) {
-        // Chat not in local list yet (e.g. first message from a new contact)
-        // — a full refresh will pick it up; not critical path for now.
         return;
       }
 

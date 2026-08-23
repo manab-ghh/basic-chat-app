@@ -34,7 +34,6 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 // Rate limiting
 app.use('/api', rateLimiter);
 
-// ✅ Add root route
 app.get('/', (req, res) => {
   res.json({
     name: 'Chat App API',
